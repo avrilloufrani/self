@@ -149,6 +149,7 @@
             position: relative;
             border-bottom: 1px solid var(--softgrey);
             transition: opacity 0.2s ease;
+            z-index: 1;
         }
 
         .work-item:hover {
@@ -163,6 +164,7 @@
             text-decoration: none;
             color: var(--black);
             font-size: 16px;
+            z-index: 1;
         }
 
         /* Partie Gauche : Titre uniquement */
@@ -199,6 +201,7 @@
             opacity: 1; 
             display: block;
             transition: opacity 0.2s;
+            z-index: 1;
         }
         
         .work-item:hover .company-logo-img {
@@ -230,7 +233,8 @@
             z-index: 100;
             object-fit: cover;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-            background: #f0f0f0; 
+            background: #f0f0f0;
+            z-index: 1000;
         }
 
         .work-item:hover .hover-reveal {
