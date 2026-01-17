@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avril Loufrani — Fashion Design</title>
+    <style>
+        /* --- 1. VARIABLES & TYPOGRAPHIE --- */
+        :root {
+            --black: #231F20;
+            --grey: #888888;
+            --light-grey: #cccccc;
+            --softgrey: #e1e1e1;
+            --white: #ffffff;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-main);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. LAYOUT --- */
+        main {
+            max-width: 1024px;
+            margin: 6rem auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4.5rem;
+            padding: 0 20px;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 496px;
+            display: flex;
+            flex-direction: column;
+            gap: 56px;
+        }
+
+        /* --- 3. TEXTES --- */
+        h1 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .subhead {
+            color: var(--grey);
+            font-size: 15px;
+            margin-bottom: 2rem;
+        }
+        .large-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow-clip-margin: content-box;
+            overflow: clip;
+        }
+        p.bio {
+            font-size: 16px;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        /* --- 3.5. BUTTONS (shadcn style) --- */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 24px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: var(--font-main);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-primary:hover {
+            background-color: #1a1718;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--black);
+            border-color: var(--softgrey);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-secondary:hover {
+            background-color: #fafafa;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-icon {
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+        }
+
+        /* --- 4. SECTION NOTABLE WORKS --- */
+        .section-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .works-list {
+            list-style: none;
+            margin-top: 0rem;
+        }
+        
+        /* Focus effect */
+        .works-list:hover .work-item {
+            opacity: 0.4;
+        }
+
+        .work-item {
+            position: relative;
+            border-bottom: 1px solid var(--softgrey);
+            transition: opacity 0.2s ease;
+        }
+
+        .work-item:hover {
+            opacity: 1 !important;
+        }
+
+        .work-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            text-decoration: none;
+            color: var(--black);
+            font-size: 16px;
+        }
+
+        /* Partie Gauche : Titre uniquement */
+        .work-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .work-title {
+            font-weight: 400;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Décalage de 16px au survol */
+        .work-item:hover .work-title {
+            transform: translateX(16px);
+        }
+
+        /* Partie Droite : Logo + PDF Tag */
+        .work-right {
+            display: flex;
+            align-items: center;
+            gap: 16px; 
+        }
+
+        .company-logo-img {
+            height: 34px;
+            border: 1px solid var(--light-grey);
+            border-radius: 6px;
+            overflow-clip-margin: content-box;
+            overflow: clip;
+            width: 34px;
+            object-fit: contain;
+            opacity: 1; 
+            display: block;
+            transition: opacity 0.2s;
+        }
+        
+        .work-item:hover .company-logo-img {
+            opacity: 1;
+        }
+
+        .pdf-tag {
+            font-size: 12px;
+            color: var(--grey);
+            transition: color 0.2s;
+        }
+
+        .work-item:hover .pdf-tag {
+            color: var(--black);
+        }
+
+        /* L'image flottante (Hover Reveal - Large) */
+        .hover-reveal {
+            position: fixed;
+            width: 320px;
+            height: 230px;
+            border-radius: 4px;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.9) translate(-50%, -50%);
+            transition: opacity 0.2s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            background: #f0f0f0; 
+        }
+
+        .work-item:hover .hover-reveal {
+            opacity: 1;
+            transform: scale(1) translate(-50%, -50%);
+        }
+
+        /* L'image flottante (Hover Reveal - Portrait Mini 32x32) */
+        .hover-reveal-portrait {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* Arrondi */
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.8) translate(-50%, -50%); /* Centré sur la souris */
+            transition: opacity 0.2s, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 200; /* Au dessus du reste */
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background: #e1e1e1;
+        }
+
+        .person-trigger {
+            position: relative;
+            cursor: none;
+            border-bottom: 1px dotted var(--light-grey); /* Indice visuel subtil */
+        }
+
+        .person-trigger:hover .hover-reveal-portrait {
+            opacity: 1;
+            transform: scale(1) translate(-50%, -50%);
+        }
+
+        /* --- 5. RESUME TOGGLE (Accordion) --- */
+        .experience-section {
+            width: 100%;
+        }
+
+        /* Focus effect - same as works-list */
+        .experience-section:hover .experience-item {
+            opacity: 0.4;
+        }
+
+        .experience-item {
+            border-bottom: 1px solid var(--softgrey);
+            transition: opacity 0.2s ease;
+        }
+
+        .experience-item:hover {
+            opacity: 1 !important;
+        }
+
+        .company-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 18px 0;
+            cursor: pointer;
+        }
+        
+        /* Chevron Icon Container */
+        .chevron-icon {
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            stroke: var(--grey);
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        /* Rotation pour l'état actif (Open) - Pointing Down */
+        .experience-item.active .chevron-icon {
+            transform: rotate(90deg); /* 90deg from Right (>) to Down (v) */
+            stroke: var(--black);
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Décalage de 16px au survol */
+        .experience-item:hover .company-info {
+            transform: translateX(16px);
+        }
+
+        .company-name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .company-role-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .company-role {
+            font-size: 14px;
+            color: var(--grey);
+        }
+
+        .company-date {
+            font-size: 13px;
+            color: var(--grey);
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+
+        .experience-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .experience-details-inner {
+            padding-bottom: 24px;
+            padding-top: 0px;
+            font-size: 14px;
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .experience-details-inner ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .experience-details-inner li {
+            margin-bottom: 6px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .experience-details-inner li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--light-grey);
+        }
+
+        .experience-item.active .experience-details {
+            max-height: 800px;
+        }
+
+        /* --- 6. LINK STYLES (Footer & Experience) --- */
+        footer a,
+        .experience-section a {
+            color: var(--black);
+            text-decoration-style: dotted;
+            text-decoration-color: var(--softgrey);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            transition: 0.3s ease;
+        }
+
+        /* --- 7. FOOTER --- */
+        footer {
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            color: var(--grey);
+        }
+
+        footer .footer-content {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 600px) {
+            main { margin: 4rem auto; gap: 3rem; }
+            .content { width: 100%; }
+            .hover-reveal { display: none; }
+            .work-item:hover .work-title { transform: none; }
+            .experience-item:hover .company-info { transform: none; }
+            .company-card-header { flex-direction: column; gap: 4px; }
+            .company-date { font-size: 12px; margin-top: 4px; width: 100%; justify-content: space-between; }
+            .button-group { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <div class="content">
+        
+        <!-- TOP INTRO -->
+        <section>
+            <img class="large-logo" src="images/avril_loufrani.png" width="40" height="40" alt="Avril Loufrani">
+            <h1>Hi, I'm Avril Loufrani,</h1>
+            
+            <p class="bio">
+                Specialized in design consulting for women’s and children’s fashion, I support brands and creative teams in developing responsible, elegant, and distinctive collections.
+            </p>
+            <p class="bio">
+                With over 15 years of experience in luxury ready-to-wear fashion across Europe and the United States — collaborating with renowned houses such as Courrèges, Lanvin, Balenciaga, Missoni, and 3.1 Phillip Lim — I'm now launching a children's clothing brand and a sustainability-focused design consulting service through Club Trésor.
+            </p>
+            
+            <div class="button-group">
+                <a href="https://cal.com/guillaume-chabot-rjlj61/15min?user=guillaume-chabot-rjlj61" class="btn btn-primary" target="_blank">
+                    Book an intro call
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+                <a href="mailto:avril.loufrani@gmail.com" class="btn btn-secondary" target="_self">
+                    Email
+                </a>
+            </div>
+        </section>
+
+        <!-- NOTABLE WORKS (Local Paths) -->
+        <section>
+            <div class="section-title">Selected Works</div>
+            <ul class="works-list">
+                <!-- Item 0: Club Trésor -->
+                <li class="work-item" onmousemove="moveImage(event, 'img-clubtresor')">
+                    <a href="pdf/avril_loufrani_club_tresor.pdf" class="work-link" target="_blank">
+                        <div class="work-left">
+                            <span class="work-title">Club Trésor</span>
+                        </div>
+                        <div class="work-right">
+                            <!-- Logo Image (Visible si fichier présent) -->
+                            <img src="images/club_tresor_logo.png" alt="Club Trésor" class="company-logo-img">
+                            <span class="pdf-tag">PDF ↗</span>
+                        </div>
+                    </a>
+                    <img src="images/club_tresor_look.jpg" alt="Club Trésor Look" class="hover-reveal" id="img-clubtresor">
+                </li>
+
+                <!-- Item 1: Courrèges -->
+                <li class="work-item" onmousemove="moveImage(event, 'img-courreges')">
+                    <a href="pdf/avril_loufrani_courreges.pdf" class="work-link" target="_blank">
+                        <div class="work-left">
+                            <span class="work-title">Courrèges</span>
+                        </div>
+                        <div class="work-right">
+                            <!-- Logo Image (Visible si fichier présent) -->
+                            <img src="images/courreges_logo.png" alt="Courrèges" class="company-logo-img">
+                            <span class="pdf-tag">PDF ↗</span>
+                        </div>
+                    </a>
+                    <img src="images/courreges_look.jpg" alt="Courrèges Look" class="hover-reveal" id="img-courreges">
+                </li>
+
+                <!-- Item 2: Lanvin -->
+                <li class="work-item" onmousemove="moveImage(event, 'img-lanvin')">
+                    <a href="pdf/avril_loufrani_lanvin.pdf" class="work-link" target="_blank">
+                        <div class="work-left">
+                            <span class="work-title">Lanvin</span>
+                        </div>
+                        <div class="work-right">
+                            <img src="images/lanvin_logo.png" alt="Lanvin" class="company-logo-img">
+                            <span class="pdf-tag">PDF ↗</span>
+                        </div>
+                    </a>
+                    <img src="images/lanvin_look.jpg" alt="Lanvin Look" class="hover-reveal" id="img-lanvin">
+                </li>
+
+                <!-- Item 3: Missoni -->
+                <li class="work-item" onmousemove="moveImage(event, 'img-missoni')">
+                    <a href="pdf/avril_loufrani_missoni.pdf" class="work-link" target="_blank">
+                        <div class="work-left">
+                            <span class="work-title">Missoni</span>
+                        </div>
+                        <div class="work-right">
+                            <img src="images/missoni_logo.png" alt="Missoni" class="company-logo-img">
+                            <span class="pdf-tag">PDF ↗</span>
+                        </div>
+                    </a>
+                    <img src="images/missoni_look.jpg" alt="Missoni Look" class="hover-reveal" id="img-missoni">
+                </li>
+
+                <!-- Item 4: 3.1 Phillip Lim -->
+                <li class="work-item" onmousemove="moveImage(event, 'img-lim')">
+                    <a href="pdf/avril_loufrani_31philliplim.pdf" class="work-link" target="_blank">
+                        <div class="work-left">
+                            <span class="work-title">3.1 Phillip Lim</span>
+                        </div>
+                        <div class="work-right">
+                            <img src="images/lim_logo.jpg" alt="Phillip Lim" class="company-logo-img">
+                            <span class="pdf-tag">PDF ↗</span>
+                        </div>
+                    </a>
+                    <img src="images/lim_look.jpg" alt="Phillip Lim Look" class="hover-reveal" id="img-lim">
+                </li>
+            </ul>
+        </section>
+
+        <!-- RESUME TOGGLE -->
+        <section class="experience-section">
+            <div class="section-title">Experience</div>
+
+            <!-- Exp 1: Club Tresor -->
+            <div class="experience-item" onclick="toggleAccordion(this)">
+                <div class="company-card-header">
+                    <div class="company-info">
+                        <div class="company-name">Club Trésor</div>
+                        <div class="company-role-wrapper">
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                            <span class="company-role">Co-Founder</span>
+                        </div>
+                    </div>
+                    <div class="company-date">2023 – Present</div>
+                </div>
+                <div class="experience-details">
+                    <div class="experience-details-inner">
+                        <p style="color: var(--grey); margin-bottom: 10px;">Children wear fashion brand</p>
+                        <ul>
+                            <li>Lead the brand's creative vision across collections, campaigns, e-commerce, and social media.</li>
+                            <li>Direct sourcing and production with French ateliers and European manufacturers.</li>
+                            <li>Merchandise a 16m² Galeries Lafayette Haussmann store with seasonal collections and curated vintage pieces.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exp 2: Courrèges -->
+            <div class="experience-item" onclick="toggleAccordion(this)">
+                <div class="company-card-header">
+                    <div class="company-info">
+                        <div class="company-name">Courrèges</div>
+                        <div class="company-role-wrapper">
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                            <span class="company-role">Head Designer RTW & Accessories</span>
+                        </div>
+                    </div>
+                    <div class="company-date">2020 – '22</div>
+                </div>
+                <div class="experience-details">
+                    <div class="experience-details-inner">
+                        <p style="color: var(--grey); margin-bottom: 10px;">
+                            Reporting to 
+                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-nicolas')">
+                                Nicolas Difelice
+                                <img src="images/nicolas-difelice.jpg" id="portrait-nicolas" class="hover-reveal-portrait" alt="Nicolas Difelice">
+                            </span>
+                        </p>
+                        <ul>
+                            <li>Create RTW concepts and lead creative direction reporting to the creative director.</li>
+                            <li>Manage RTW team of 8 designers, guiding concepts, designs, and atelier fittings.</li>
+                            <li>Oversee fabric and yarn selection, textile research, prints, and embroideries.</li>
+                            <li>Collaborate with Creative Director, stylist, and commercial teams on show preparation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exp 3: Lanvin -->
+            <div class="experience-item" onclick="toggleAccordion(this)">
+                <div class="company-card-header">
+                    <div class="company-info">
+                        <div class="company-name">Lanvin</div>
+                        <div class="company-role-wrapper">
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                            <span class="company-role">Head Designer</span>
+                        </div>
+                    </div>
+                    <div class="company-date">2019 – '20</div>
+                </div>
+                <div class="experience-details">
+                    <div class="experience-details-inner">
+                        <p style="color: var(--grey); margin-bottom: 10px;">
+                            Reporting to 
+                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-bruno')">
+                                Bruno Sialleli
+                                <img src="images/bruno-sialleli.jpg" id="portrait-bruno" class="hover-reveal-portrait" alt="Bruno Sialleli">
+                            </span>
+                        </p>
+                        <ul>
+                            <li>Creation of the RTW concepts and creative direction.</li>
+                            <li>Managing RTW Team (4 designers, from concepts through designs and atelier fittings).</li>
+                            <li>Oversee fabric and yarn selection, textile research, prints, and embroideries.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exp 4: M Missoni -->
+            <div class="experience-item" onclick="toggleAccordion(this)">
+                <div class="company-card-header">
+                    <div class="company-info">
+                        <div class="company-name">M Missoni</div>
+                        <div class="company-role-wrapper">
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                            <span class="company-role">Head Designer Consulting</span>
+                        </div>
+                    </div>
+                    <div class="company-date">2018 – '19</div>
+                </div>
+                <div class="experience-details">
+                    <div class="experience-details-inner">
+                        <p style="color: var(--grey); margin-bottom: 10px;">
+                            Reporting to 
+                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-margherita')">
+                                Margherita Missoni
+                                <img src="images/margherita-missoni.jpg" id="portrait-margherita" class="hover-reveal-portrait" alt="Margherita Missoni">
+                            </span>
+                        </p>
+                        <ul>
+                            <li>Creation of the RTW concepts and creative direction.</li>
+                            <li>Oversee fabric and yarn selection, textile, prints, and embroidery research.</li>
+                            <li>Lead visual, vintage, sketching, and volume research for collections.</li>
+                            <li>Samples launching and development of the garment at the factory.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exp 5: 3.1 Phillip Lim -->
+            <div class="experience-item" onclick="toggleAccordion(this)">
+                <div class="company-card-header">
+                    <div class="company-info">
+                        <div class="company-name">3.1 Phillip Lim</div>
+                        <div class="company-role-wrapper">
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                            <span class="company-role">Design Director RTW / Head Designer</span>
+                        </div>
+                    </div>
+                    <div class="company-date">2013 – '18</div>
+                </div>
+                <div class="experience-details">
+                    <div class="experience-details-inner">
+                        <p style="color: var(--grey); margin-bottom: 10px;">
+                            Reporting to 
+                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-lim')">
+                                Phillip Lim
+                                <img src="images/phillip-lim.jpg" id="portrait-lim" class="hover-reveal-portrait" alt="Phillip Lim">
+                            </span>
+                        </p>
+                        <p style="margin-bottom: 10px; font-weight:500;">Design Director / Head Designer (2016-2017)</p>
+                        <ul>
+                            <li>Creation of the RTW concepts (all categories) and creative direction.</li>
+                            <li>Oversee fabric and yarn selection, textile research, prints, and embroideries.</li>
+                            <li>Manage RTW team of 8 designers, guiding concepts, designs, and fittings.</li>
+                            <li>Creation of a jewelry Line.</li>
+                        </ul>
+                        <p style="margin-top: 15px; margin-bottom: 10px; font-weight:500;">Senior Designer RTW (2013-2016)</p>
+                        <ul>
+                            <li>Visuals and vintage researches.</li>
+                            <li>Fabrics selection and textile researches.</li>
+                            <li>Sketching and volume research.</li>
+                            <li>Samples launching and development at the atelier.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exp 6: Balenciaga -->
+            <div class="experience-item" onclick="toggleAccordion(this)">
+                <div class="company-card-header">
+                    <div class="company-info">
+                        <div class="company-name">Balenciaga</div>
+                        <div class="company-role-wrapper">
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                            <span class="company-role">Fashion Designer</span>
+                        </div>
+                    </div>
+                    <div class="company-date">2009 – '13</div>
+                </div>
+                <div class="experience-details">
+                    <div class="experience-details-inner">
+                        <p style="color: var(--grey); margin-bottom: 10px;">
+                            Under 
+                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-nicolas-g')">
+                                Nicolas Ghesquière
+                                <img src="images/nicolas-ghesquiere.jpg" id="portrait-nicolas-g" class="hover-reveal-portrait" alt="Nicolas Ghesquière">
+                            </span>
+                        </p>
+                        <ul>
+                            <li>RTW in charge of the capsule collection (jersey, leather, denim, soft wovens).</li>
+                            <li>Collection design and development.</li>
+                            <li>Lead visual, vintage, fabric, and textile research for collections.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-content">
+                <span>© 2026 Avril Loufrani</span>
+                <a href="https://www.linkedin.com/in/avril-loufrani-69440325/" target="_blank">Connect on LinkedIn ↗</a>
+                <a href="https://www.instagram.com/avrilloufrani" target="_blank">Instagram ↗</a>
+            </div>
+        </footer>
+
+    </div>
+</main>
+
+<script>
+    // --- 1. ACCORDIONS ---
+    function toggleAccordion(element) {
+        const allItems = document.querySelectorAll('.experience-item');
+        
+        if (!element.classList.contains('active')) {
+            allItems.forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        } else {
+            element.classList.remove('active');
+        }
+    }
+
+    // --- 2. IMAGE HOVER FOLLOW (Works & Portraits) ---
+    function moveImage(e, imgId) {
+        const img = document.getElementById(imgId);
+        // Le CSS gère le centrage (transform: translate -50%), 
+        // on passe juste les coordonnées de la souris.
+        img.style.left = e.clientX + 'px';
+        img.style.top = e.clientY + 'px';
+    }
+</script>
+
+</body>
+</html>
