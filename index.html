@@ -273,6 +273,9 @@
             position: relative;
             cursor: none;
             border-bottom: 1px dotted var(--light-grey); /* Indice visuel subtil */
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .person-trigger:hover .hover-reveal-portrait {
@@ -433,6 +436,24 @@
             .company-date { font-size: 12px; margin-top: 4px; width: 100%; justify-content: space-between; }
             .button-group { flex-direction: column; }
             .btn { width: 100%; }
+                        
+            /* Display portraits inline on mobile */
+            .hover-reveal-portrait {
+                position: relative;
+                display: inline-block;
+                opacity: 1;
+                transform: none;
+                top: auto;
+                left: auto;
+                width: 32px;
+                height: 32px;
+                vertical-align: middle;
+                margin-left: 4px;
+            }
+            
+            .person-trigger {
+                cursor: default;
+            }
         }
     </style>
 </head>
