@@ -433,6 +433,10 @@
         }
 
         /* --- 7. FOOTER --- */
+        .mobile-vcf-link {
+            display: none; 
+        }
+        
         footer {
             width: 100%;
             text-align: center;
@@ -474,6 +478,12 @@
             }
             .inline-avatar {    
                 display: block;            
+            }
+            
+            .mobile-vcf-link {
+                display: inline-flex !important; 
+                align-items: center;
+                gap: 4px;
             }
         }
     </style>
@@ -783,6 +793,7 @@
         <footer>
             <div class="footer-content">
                 <span>© 2026 Avril Loufrani</span>
+                <a href="images/avril_loufrani.vcf" class="mobile-vcf-link" download>Save Contact ↓</a>
                 <a href="https://www.linkedin.com/in/avril-loufrani-69440325/" target="_blank">Connect on LinkedIn ↗</a>
                 <a href="https://www.instagram.com/avrilloufrani" target="_blank">Instagram ↗</a>
             </div>
