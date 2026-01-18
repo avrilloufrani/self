@@ -281,29 +281,29 @@
         
         /* --- 5.5 NEW ALIGNMENT CLASSES --- */
         .reporting-line {
-            display: flex;              /* Activates flexbox */
-            align-items: center;        /* Forces vertical centering */
-            gap: 6px;                   /* Space between "Reporting to" and the rest */
+            display: flex;              
+            align-items: center;        
+            gap: 6px;                   
             color: var(--grey);
             margin-bottom: 10px;
             font-size: 14px;
         }
 
         .person-wrapper {
-            display: inline-flex;       /* Makes the person group (Img + Name) a flex container too */
-            align-items: center;        /* Vertically aligns the Avatar with the Name */
-            gap: 8px;                   /* Space between Avatar and Name */
-            color: var(--black);        /* Name color (darker than "Reporting to") */
-            font-weight: 500;           /* Optional: makes the name pop */
-            cursor: pointer;            /* Keeps the hover hint */
+            display: inline-flex;       
+            align-items: center;        
+            gap: 8px;                   
+            color: var(--black);        
+            font-weight: 500;           
+            cursor: pointer;            
         }
 
         .inline-avatar {
-            width: 28px;               /* Adjust size as needed */
+            width: 28px;               
             height: 28px;
-            border-radius: 50%;         /* Perfect circle */
-            object-fit: cover;          /* Prevents image distortion */
-            display: block;             /* Removes tiny layout gaps often caused by inline images */
+            border-radius: 50%;        
+            object-fit: cover;         
+            display: none;            
         }
 
         /* --- 5. RESUME TOGGLE (Accordion) --- */
@@ -471,6 +471,9 @@
             .person-trigger {
                 cursor: default;
                 border-bottom: 1px transparent;
+            }
+            .inline-avatar {    
+                display: block;            
             }
         }
     </style>
