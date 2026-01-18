@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow"><title>Avril Loufrani</title>
-    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
@@ -270,17 +269,41 @@
         }
 
         .person-trigger {
+            /* Modified for flex layout */
             position: relative;
             cursor: none;
-            border-bottom: 1px dotted var(--light-grey); /* Indice visuel subtil */
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .person-trigger:hover .hover-reveal-portrait {
             opacity: 1;
             transform: scale(1) translate(-50%, -50%);
+        }
+        
+        /* --- 5.5 NEW ALIGNMENT CLASSES --- */
+        .reporting-line {
+            display: flex;              /* Activates flexbox */
+            align-items: center;        /* Forces vertical centering */
+            gap: 6px;                   /* Space between "Reporting to" and the rest */
+            color: var(--grey);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .person-wrapper {
+            display: inline-flex;       /* Makes the person group (Img + Name) a flex container too */
+            align-items: center;        /* Vertically aligns the Avatar with the Name */
+            gap: 8px;                   /* Space between Avatar and Name */
+            color: var(--black);        /* Name color (darker than "Reporting to") */
+            font-weight: 500;           /* Optional: makes the name pop */
+            cursor: pointer;            /* Keeps the hover hint */
+        }
+
+        .inline-avatar {
+            width: 28px;               /* Adjust size as needed */
+            height: 28px;
+            border-radius: 50%;         /* Perfect circle */
+            object-fit: cover;          /* Prevents image distortion */
+            display: block;             /* Removes tiny layout gaps often caused by inline images */
         }
 
         /* --- 5. RESUME TOGGLE (Accordion) --- */
@@ -437,18 +460,8 @@
             .button-group { flex-direction: column; }
             .btn { width: 100%; }
                         
-            /* Display portraits inline on mobile */
             .hover-reveal-portrait {
-                position: relative;
-                display: inline-block;
-                opacity: 1;
-                transform: none;
-                top: auto;
-                left: auto;
-                width: 32px;
-                height: 32px;
-                vertical-align: middle;
-                margin-left: 4px;
+                display: none !important;
             }
 
             .experience-section a { 
@@ -457,6 +470,7 @@
             
             .person-trigger {
                 cursor: default;
+                border-bottom: 1px transparent;
             }
         }
     </style>
@@ -466,7 +480,6 @@
 <main>
     <div class="content">
         
-        <!-- TOP INTRO -->
         <section>
             <img class="large-logo" src="images/avril_loufrani.png" width="40" height="40" alt="Avril Loufrani">
             <h1>Hi, I'm Avril Loufrani,</h1>
@@ -492,18 +505,15 @@
             </div>
         </section>
 
-        <!-- NOTABLE WORKS (Local Paths) -->
         <section>
             <div class="section-title">Selected Works</div>
             <ul class="works-list">
-                <!-- Item 0: Club Trésor -->
                 <li class="work-item" onmousemove="moveImage(event, 'img-clubtresor')">
                     <a href="pdf/avril_loufrani_club_tresor.pdf" class="work-link" target="_blank">
                         <div class="work-left">
                             <span class="work-title">Club Trésor</span>
                         </div>
                         <div class="work-right">
-                            <!-- Logo Image (Visible si fichier présent) -->
                             <img src="images/club_tresor_logo.jpg" alt="Club Trésor" class="company-logo-img">
                             <span class="pdf-tag">PDF ↗</span>
                         </div>
@@ -511,14 +521,12 @@
                     <img src="images/club_tresor_look.png" alt="Club Trésor Look" class="hover-reveal" id="img-clubtresor">
                 </li>
 
-                <!-- Item 1: Courrèges -->
                 <li class="work-item" onmousemove="moveImage(event, 'img-courreges')">
                     <a href="pdf/avril_loufrani_courreges.pdf" class="work-link" target="_blank">
                         <div class="work-left">
                             <span class="work-title">Courrèges</span>
                         </div>
                         <div class="work-right">
-                            <!-- Logo Image (Visible si fichier présent) -->
                             <img src="images/courreges_logo.png" alt="Courrèges" class="company-logo-img">
                             <span class="pdf-tag">PDF ↗</span>
                         </div>
@@ -526,7 +534,6 @@
                     <img src="images/courreges_look.png" alt="Courrèges Look" class="hover-reveal" id="img-courreges">
                 </li>
 
-                <!-- Item 2: Lanvin -->
                 <li class="work-item" onmousemove="moveImage(event, 'img-lanvin')">
                     <a href="pdf/avril_loufrani_lanvin.pdf" class="work-link" target="_blank">
                         <div class="work-left">
@@ -540,7 +547,6 @@
                     <img src="images/lanvin_look.png" alt="Lanvin Look" class="hover-reveal" id="img-lanvin">
                 </li>
 
-                <!-- Item 3: Missoni -->
                 <li class="work-item" onmousemove="moveImage(event, 'img-missoni')">
                     <a href="pdf/avril_loufrani_missoni.pdf" class="work-link" target="_blank">
                         <div class="work-left">
@@ -554,7 +560,6 @@
                     <img src="images/missoni_look.png" alt="Missoni Look" class="hover-reveal" id="img-missoni">
                 </li>
 
-                <!-- Item 4: 3.1 Phillip Lim -->
                 <li class="work-item" onmousemove="moveImage(event, 'img-lim')">
                     <a href="pdf/avril_loufrani_lim.pdf" class="work-link" target="_blank">
                         <div class="work-left">
@@ -570,11 +575,9 @@
             </ul>
         </section>
 
-        <!-- RESUME TOGGLE -->
         <section class="experience-section">
             <div class="section-title">Experience</div>
 
-            <!-- Exp 1: Club Tresor -->
             <div class="experience-item" onclick="toggleAccordion(this)">
                 <div class="company-card-header">
                     <div class="company-info">
@@ -600,7 +603,6 @@
                 </div>
             </div>
 
-            <!-- Exp 2: Courrèges -->
             <div class="experience-item" onclick="toggleAccordion(this)">
                 <div class="company-card-header">
                     <div class="company-info">
@@ -616,13 +618,14 @@
                 </div>
                 <div class="experience-details">
                     <div class="experience-details-inner">
-                        <p style="color: var(--grey); margin-bottom: 10px;">
-                            Reporting to 
-                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-nicolas')">
+                        <div class="reporting-line">
+                            <span>Reporting to</span>
+                            <span class="person-trigger person-wrapper" onmousemove="moveImage(event, 'portrait-nicolas')">
+                                <img src="images/nicolas-difelice.png" class="inline-avatar" alt="Nicolas Difelice">
+                                <span>Nicolas Difelice</span>
                                 <img src="images/nicolas-difelice.png" id="portrait-nicolas" class="hover-reveal-portrait" alt="Nicolas Difelice">
-                                    Nicolas Difelice
                             </span>
-                        </p>
+                        </div>
                         <ul>
                             <li>Create RTW concepts and lead creative direction reporting to the creative director.</li>
                             <li>Manage RTW team of 8 designers, guiding concepts, designs, and atelier fittings.</li>
@@ -633,7 +636,6 @@
                 </div>
             </div>
 
-            <!-- Exp 3: Lanvin -->
             <div class="experience-item" onclick="toggleAccordion(this)">
                 <div class="company-card-header">
                     <div class="company-info">
@@ -649,13 +651,14 @@
                 </div>
                 <div class="experience-details">
                     <div class="experience-details-inner">
-                        <p style="color: var(--grey); margin-bottom: 10px;">
-                            Reporting to 
-                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-bruno')">
+                        <div class="reporting-line">
+                            <span>Reporting to</span>
+                            <span class="person-trigger person-wrapper" onmousemove="moveImage(event, 'portrait-bruno')">
+                                <img src="images/bruno-sialleli.png" class="inline-avatar" alt="Bruno Sialleli">
+                                <span>Bruno Sialleli</span>
                                 <img src="images/bruno-sialleli.png" id="portrait-bruno" class="hover-reveal-portrait" alt="Bruno Sialleli">
-                                    Bruno Sialleli
                             </span>
-                        </p>
+                        </div>
                         <ul>
                             <li>Creation of the RTW concepts and creative direction.</li>
                             <li>Managing RTW Team (4 designers, from concepts through designs and atelier fittings).</li>
@@ -665,7 +668,6 @@
                 </div>
             </div>
 
-            <!-- Exp 4: M Missoni -->
             <div class="experience-item" onclick="toggleAccordion(this)">
                 <div class="company-card-header">
                     <div class="company-info">
@@ -681,13 +683,14 @@
                 </div>
                 <div class="experience-details">
                     <div class="experience-details-inner">
-                        <p style="color: var(--grey); margin-bottom: 10px;">
-                            Reporting to 
-                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-margherita')">
+                        <div class="reporting-line">
+                            <span>Reporting to</span>
+                            <span class="person-trigger person-wrapper" onmousemove="moveImage(event, 'portrait-margherita')">
+                                <img src="images/margherita-missoni.png" class="inline-avatar" alt="Margherita Missoni">
+                                <span>Margherita Missoni</span>
                                 <img src="images/margherita-missoni.png" id="portrait-margherita" class="hover-reveal-portrait" alt="Margherita Missoni">
-                                    Margherita Missoni
                             </span>
-                        </p>
+                        </div>
                         <ul>
                             <li>Creation of the RTW concepts and creative direction.</li>
                             <li>Oversee fabric and yarn selection, textile, prints, and embroidery research.</li>
@@ -698,7 +701,6 @@
                 </div>
             </div>
 
-            <!-- Exp 5: 3.1 Phillip Lim -->
             <div class="experience-item" onclick="toggleAccordion(this)">
                 <div class="company-card-header">
                     <div class="company-info">
@@ -714,13 +716,15 @@
                 </div>
                 <div class="experience-details">
                     <div class="experience-details-inner">
-                        <p style="color: var(--grey); margin-bottom: 10px;">
-                            Reporting to 
-                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-lim')">
+                        <div class="reporting-line">
+                            <span>Reporting to</span>
+                            <span class="person-trigger person-wrapper" onmousemove="moveImage(event, 'portrait-lim')">
+                                <img src="images/phillip-lim.png" class="inline-avatar" alt="Phillip Lim">
+                                <span>Phillip Lim</span>
                                 <img src="images/phillip-lim.png" id="portrait-lim" class="hover-reveal-portrait" alt="Phillip Lim">
-                                    Phillip Lim
                             </span>
-                        </p>
+                        </div>
+                        
                         <p style="margin-bottom: 10px; font-weight:500;">Design Director / Head Designer (2016-2017)</p>
                         <ul>
                             <li>Creation of the RTW concepts (all categories) and creative direction.</li>
@@ -739,7 +743,6 @@
                 </div>
             </div>
 
-            <!-- Exp 6: Balenciaga -->
             <div class="experience-item" onclick="toggleAccordion(this)">
                 <div class="company-card-header">
                     <div class="company-info">
@@ -755,13 +758,14 @@
                 </div>
                 <div class="experience-details">
                     <div class="experience-details-inner">
-                        <p style="color: var(--grey); margin-bottom: 10px;">
-                            Under 
-                            <span class="person-trigger" onmousemove="moveImage(event, 'portrait-nicolas-g')">
+                        <div class="reporting-line">
+                            <span>Under</span>
+                            <span class="person-trigger person-wrapper" onmousemove="moveImage(event, 'portrait-nicolas-g')">
+                                <img src="images/nicolas-ghesquiere.png" class="inline-avatar" alt="Nicolas Ghesquière">
+                                <span>Nicolas Ghesquière</span>
                                 <img src="images/nicolas-ghesquiere.png" id="portrait-nicolas-g" class="hover-reveal-portrait" alt="Nicolas Ghesquière">
-                                    Nicolas Ghesquière
                             </span>
-                        </p>
+                        </div>
                         <ul>
                             <li>RTW in charge of the capsule collection (jersey, leather, denim, soft wovens).</li>
                             <li>Collection design and development.</li>
@@ -773,7 +777,6 @@
 
         </section>
 
-        <!-- FOOTER -->
         <footer>
             <div class="footer-content">
                 <span>© 2026 Avril Loufrani</span>
